@@ -11,7 +11,7 @@ import android.widget.Toast;
 public class MyCoreDatabase extends SQLiteOpenHelper {
 
     static final private String DB_NAME = "Education";
-    static final private String DB_TABLE = "student";
+    static final private String DB_TABLE = "Student";
     static final private int DB_VER= 1;
     Context ctx;
     SQLiteDatabase myDB;
@@ -30,11 +30,11 @@ public class MyCoreDatabase extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-    sqLiteDatabase.execSQL("drop table if exists"+DB_TABLE);
+    sqLiteDatabase.execSQL("drop table if exists "+DB_TABLE);
         onCreate(sqLiteDatabase);
     }
 
-    public void insertData(String s1,String s2){
+    public void insertData(String s1, String s2){
         myDB=getWritableDatabase();
         myDB.execSQL("insert into "+DB_TABLE+" (stu_name,college_name) values('"+s1+"','"+s2+"');");
         Toast.makeText(ctx,"Data Saved Successfully",Toast.LENGTH_SHORT).show();
@@ -42,7 +42,7 @@ public class MyCoreDatabase extends SQLiteOpenHelper {
 
     public void getAll(){
         myDB= getReadableDatabase();
-        Cursor cr = myDB.rawQuery("Select * from"+DB_NAME,null);
+        Cursor cr = myDB.rawQuery("Select * from "+DB_TABLE,null);
         StringBuilder str = new StringBuilder();
 
         while (cr.moveToNext()){
